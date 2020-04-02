@@ -16,7 +16,9 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 ### Visuals
 
 #### ERD Diagram
-![Application](./assets/ERD-diagram.png)
+![Application based on this model](./assets/AsyncInn2.png)
+
+![previous model](./assets/ERD-diagram.png)
 
 ---
 
