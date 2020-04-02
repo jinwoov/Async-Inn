@@ -33,7 +33,7 @@ namespace AsyncInn
         }
 
         /// <summary>
-        /// configuration
+        /// configuration method to setting the home
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
