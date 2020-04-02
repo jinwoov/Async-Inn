@@ -2,7 +2,7 @@
 
 ----
 
-Lab 12 - Databases & ERDs
+Lab 12, Lab-13 - Databases & ERDs
 
 *Author: Matthew Johnson, Jin Kim*
 
@@ -43,5 +43,8 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 1.4: *Added migration* - April 2 2020
+- 1.3: *Scaffolding database, install all needed dependencies* - April 2 2020
+- 1.2: *Lab 12 complete, updated our ERD diagram* - April 2 2020
 - 1.1: *Added description of ERD diagram* - April 1 2020
 - 1.0: *Created repo and added image to the README documentation* - April 1 2020  
