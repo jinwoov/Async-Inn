@@ -33,7 +33,7 @@ namespace AsyncInn
         }
 
         /// <summary>
-        /// conf
+        /// configuration
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
