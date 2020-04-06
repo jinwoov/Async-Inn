@@ -15,6 +15,11 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 ---
 ### Visuals
 
+### Screenshots
+
+![Postman](./assets/Postman.png)
+Postman example ammenities
+
 #### ERD Diagram
 ![Application based on this model](./assets/AsyncInn2.png)
 
