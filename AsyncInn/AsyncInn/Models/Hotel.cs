@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace AsyncInn.Models
-{
+{   //This is a regular table.
     public class Hotel
-    {
+    {   // ID is the Primary Key of Hotel. The other properties are info about the hotel.
         public int ID { get; set; }
         public string Name { get; set; }
         public string StreetAddress { get; set; }
@@ -14,7 +14,7 @@ namespace AsyncInn.Models
         public string State { get; set; }
         public string Phone { get; set; }
 
-        //nav properties
+        //Below is the Nav Property. This model links to HotelRooms.
 
         List<HotelRooms> HotelRoom = new List<HotelRooms>();
     }
