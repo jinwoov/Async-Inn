@@ -43,7 +43,10 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
-- 3.0; *Switched to Matthew Driving*
+- 3.3; *Controllers added for all models* April 6, 2020
+- 3.2; *Room, Hotel and Amenities dbs seeded with hardcoded data.* April 6, 2020
+- 3.1; *Secrets built out and added to Startup. Additional comments added to all the models.* April 6, 2020
+- 3.0; *Switched to Matthew Driving* April 6 2020
 - 2.1; *Migrated and updated database* April 2 2020
 - 2.0: *Created a new classes in the models folder. In DbContext, created a new table for each entity class. We added composite keys association with own overriden `OnModelCreating` method* April 2 2020
 - 1.4: *Added migration* - April 2 2020
