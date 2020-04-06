@@ -20,9 +20,12 @@ namespace AsyncInn.Data
         /// </summary>
         /// <param name="modelBuilder">modelBuilder</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {   
+            //The below methods create the Composite keys for HotelRooms and RoomAmenities.
             modelBuilder.Entity<HotelRooms>().HasKey(x => new { x.HotelID, x.RoomID });
             modelBuilder.Entity<RoomAmenities>().HasKey(x => new { x.AmenitiesID, x.RoomID });
+
+            // The below method seeds the Room table with data.
             modelBuilder.Entity<Room>().HasData(
                 new Room
                 {
@@ -62,6 +65,7 @@ namespace AsyncInn.Data
                 }
                 ) ;
 
+            //The below method seeds the Hotel table with data.
             modelBuilder.Entity<Hotel>().HasData(
                 new Hotel
                 {
@@ -110,6 +114,7 @@ namespace AsyncInn.Data
                 }
             );
 
+            //The below method seeds the Amenities table with data. 
             modelBuilder.Entity<Amenities>().HasData(
                 new Amenities
                 {
