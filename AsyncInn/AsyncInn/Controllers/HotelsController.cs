@@ -78,9 +78,9 @@ namespace AsyncInn.Controllers
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            var NewHotel = await _context.CreateHotel(hotel);
+            var newHotel = await _context.CreateHotel(hotel);
 
-            return CreatedAtAction("GetHotel", new { id = NewHotel.ID }, NewHotel);
+            return CreatedAtAction("GetHotel", new { id = newHotel.ID }, newHotel);
         }
 
         // DELETE: api/Hotels/5
