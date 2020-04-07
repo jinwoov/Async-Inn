@@ -14,14 +14,17 @@ namespace AsyncInn.Controllers
     [ApiController]
     public class AmenitiesController : ControllerBase
     {
+        /// This is DbContext object that is created when the this route is called
         private readonly AsyncInnDbContext _context;
 
+        /// assigning the Dbcontext context to private context property
         public AmenitiesController(AsyncInnDbContext context)
         {
             _context = context;
         }
 
         // GET: api/Amenities
+        /// Get route that is shows list of amenities in the method
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities()
         {
@@ -29,6 +32,7 @@ namespace AsyncInn.Controllers
         }
 
         // GET: api/Amenities/5
+        /// Get route that shows specific amenity when user picks
         [HttpGet("{id}")]
         public async Task<ActionResult<Amenities>> GetAmenities(int id)
         {
@@ -43,8 +47,7 @@ namespace AsyncInn.Controllers
         }
 
         // PUT: api/Amenities/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // Update method that checks for the ID and change if it does exist otherwise return bad request
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAmenities(int id, Amenities amenities)
         {
@@ -75,8 +78,7 @@ namespace AsyncInn.Controllers
         }
 
         // POST: api/Amenities
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // Creates new amenity when user input information
         [HttpPost]
         public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
         {
@@ -87,6 +89,7 @@ namespace AsyncInn.Controllers
         }
 
         // DELETE: api/Amenities/5
+        //Deletes specific id that is in amenity database
         [HttpDelete("{id}")]
         public async Task<ActionResult<Amenities>> DeleteAmenities(int id)
         {
@@ -102,6 +105,7 @@ namespace AsyncInn.Controllers
             return amenities;
         }
 
+        /// checks if the amenity id exists in the database
         private bool AmenitiesExists(int id)
         {
             return _context.Amenities.Any(e => e.ID == id);

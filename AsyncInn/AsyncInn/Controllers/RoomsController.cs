@@ -14,14 +14,17 @@ namespace AsyncInn.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
+        /// This is DbContext object that is created when the this route is called
         private readonly AsyncInnDbContext _context;
 
+        /// assigning the Dbcontext context to private context property
         public RoomsController(AsyncInnDbContext context)
         {
             _context = context;
         }
 
         // GET: api/Rooms
+        // Get route that is shows list of Room in the method
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRoom()
         {
@@ -29,6 +32,7 @@ namespace AsyncInn.Controllers
         }
 
         // GET: api/Rooms/5
+        /// Get route that shows specific Room when user picks
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
@@ -43,8 +47,7 @@ namespace AsyncInn.Controllers
         }
 
         // PUT: api/Rooms/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // Update method that checks for the ID and change if it does exist otherwise returns bad request
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoom(int id, Room room)
         {
@@ -75,8 +78,7 @@ namespace AsyncInn.Controllers
         }
 
         // POST: api/Rooms
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // Creates new Rooms when user input information
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
@@ -87,6 +89,7 @@ namespace AsyncInn.Controllers
         }
 
         // DELETE: api/Rooms/5
+        //Deletes specific id that is in Room database
         [HttpDelete("{id}")]
         public async Task<ActionResult<Room>> DeleteRoom(int id)
         {
@@ -102,6 +105,7 @@ namespace AsyncInn.Controllers
             return room;
         }
 
+        /// checks if the Room id exists in the database
         private bool RoomExists(int id)
         {
             return _context.Room.Any(e => e.ID == id);
