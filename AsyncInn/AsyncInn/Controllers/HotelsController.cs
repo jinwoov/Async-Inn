@@ -14,14 +14,17 @@ namespace AsyncInn.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
+        /// This is DbContext object that is created when the this route is called
         private readonly AsyncInnDbContext _context;
 
+        /// assigning the Dbcontext context to private context property
         public HotelsController(AsyncInnDbContext context)
         {
             _context = context;
         }
 
         // GET: api/Hotels
+        /// Get route that is shows list of Hotel in the method
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
         {
@@ -29,6 +32,7 @@ namespace AsyncInn.Controllers
         }
 
         // GET: api/Hotels/5
+        /// Get route that shows specific Hotel when user picks
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
@@ -43,8 +47,7 @@ namespace AsyncInn.Controllers
         }
 
         // PUT: api/Hotels/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // Update method that checks for the ID and change if it does exist otherwise return bad request
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotel(int id, Hotel hotel)
         {
@@ -75,8 +78,7 @@ namespace AsyncInn.Controllers
         }
 
         // POST: api/Hotels
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // Creates new Hotel when user input information
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
@@ -87,6 +89,7 @@ namespace AsyncInn.Controllers
         }
 
         // DELETE: api/Hotels/5
+        //Deletes specific id that is in Hotel database
         [HttpDelete("{id}")]
         public async Task<ActionResult<Hotel>> DeleteHotel(int id)
         {
@@ -102,6 +105,7 @@ namespace AsyncInn.Controllers
             return hotel;
         }
 
+        /// checks if the Hotel id exists in the database
         private bool HotelExists(int id)
         {
             return _context.Hotel.Any(e => e.ID == id);
