@@ -39,7 +39,11 @@ namespace AsyncInn
             services.AddDbContext<AsyncInnDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Adding transient dependency and connecting the interface to services
-            services.AddTransient<IHotelManager, HotelService>(); 
+            services.AddTransient<IHotelManager, HotelService>();
+            services.AddTransient<IAmenitiesManager, AmenitiesService>();
+            services.AddTransient<IRoomManager, RoomService>();
+            services.AddTransient<IHotelRoomsManager, HotelRoomsService>();
+
 
         }
 
