@@ -14,8 +14,8 @@ namespace AsyncInn.Models
 
 
         // Below are the Nav Properties for Room. It links to the RoomAmenities and HotelRooms models. 
-        List<RoomAmenities> RoomAmenities = new List<RoomAmenities>();
-        List<HotelRooms> HotelRoom = new List<HotelRooms>();
+        public List<RoomAmenities> RoomAmenities = new List<RoomAmenities>();
+        public List<HotelRooms> HotelRoom = new List<HotelRooms>();
     }
 
     /// <summary>
