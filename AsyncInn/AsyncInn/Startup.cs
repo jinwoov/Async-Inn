@@ -42,7 +42,7 @@ namespace AsyncInn
             services.AddTransient<IHotelManager, HotelService>();
             services.AddTransient<IAmenitiesManager, AmenitiesService>();
             services.AddTransient<IRoomManager, RoomService>();
-            services.AddTransient<IHotelRoomsManager, HotelRoomsService>();
+            services.AddTransient<IHotelRoomManager, HotelRoomsService>();
 
 
         }

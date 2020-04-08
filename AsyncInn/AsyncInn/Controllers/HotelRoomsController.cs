@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
@@ -15,10 +16,10 @@ namespace AsyncInn.Controllers
     public class HotelRoomsController : ControllerBase
     {
         /// This is DbContext object that is created when the this route is called
-        private readonly AsyncInnDbContext _context;
+        private readonly IHotelRoomManager _context;
 
         /// assigning the Dbcontext context to private context property
-        public HotelRoomsController(AsyncInnDbContext context)
+        public HotelRoomsController(IHotelRoomManager context)
         {
             _context = context;
         }
@@ -26,17 +27,14 @@ namespace AsyncInn.Controllers
         // GET: api/HotelRooms
         /// Get route that is shows list of HotelRooms in the method
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HotelRooms>>> GetHotelRoom()
-        {
-            return await _context.HotelRoom.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<HotelRooms>>> GetHotelRoom() => await _context.GetHotelRooms();
 
         // GET: api/HotelRooms/5
         /// Get route that shows specific HotelRooms when user picks
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelRooms>> GetHotelRooms(int id)
         {
-            var hotelRooms = await _context.HotelRoom.FindAsync(id);
+            var hotelRooms = await _context.GetHotelRoom(id);
 
             if (hotelRooms == null)
             {
@@ -56,15 +54,13 @@ namespace AsyncInn.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(hotelRooms).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.UpdateHotelRoom(hotelRooms);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!HotelRoomsExists(id))
+                if (! await HotelRoomsExists(id))
                 {
                     return NotFound();
                 }
@@ -82,24 +78,9 @@ namespace AsyncInn.Controllers
         [HttpPost]
         public async Task<ActionResult<HotelRooms>> PostHotelRooms(HotelRooms hotelRooms)
         {
-            _context.HotelRoom.Add(hotelRooms);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (HotelRoomsExists(hotelRooms.HotelID))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var newHotelrooms = await _context.CreateHotelRoom(hotelRooms);
 
-            return CreatedAtAction("GetHotelRooms", new { id = hotelRooms.HotelID }, hotelRooms);
+            return CreatedAtAction("GetHotelRooms", new { id = newHotelrooms.HotelID }, newHotelrooms);
         }
 
         // DELETE: api/HotelRooms/5
@@ -107,22 +88,19 @@ namespace AsyncInn.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<HotelRooms>> DeleteHotelRooms(int id)
         {
-            var hotelRooms = await _context.HotelRoom.FindAsync(id);
-            if (hotelRooms == null)
+            if (id <= 0)
             {
                 return NotFound();
             }
 
-            _context.HotelRoom.Remove(hotelRooms);
-            await _context.SaveChangesAsync();
-
-            return hotelRooms;
+            return await _context.DeleteHotelRoom(id);
         }
 
         /// checks if the HotelRooms id exists in the database
-        private bool HotelRoomsExists(int id)
+        private async Task<bool> HotelRoomsExists(int id)
         {
-            return _context.HotelRoom.Any(e => e.HotelID == id);
+            HotelRooms hotelRooms = await _context.GetHotelRoom(id);
+            return hotelRooms != null ? true : false;
         }
     }
 }
