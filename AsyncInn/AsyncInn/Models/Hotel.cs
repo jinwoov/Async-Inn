@@ -16,6 +16,6 @@ namespace AsyncInn.Models
 
         //Below is the Nav Property. This model links to HotelRooms.
 
-        List<HotelRooms> HotelRoom = new List<HotelRooms>();
+        public List<HotelRooms> HotelRoom = new List<HotelRooms>();
     }
 }

@@ -67,5 +67,13 @@ namespace AsyncInn.Models.Services
             _context.Update(room);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<RoomAmenities>> AmenitiesByRoomID(int ID)
+        {
+            var amenities = await _context.RoomAmenities.Where(x => x.RoomID == ID)
+                                                  .Include(x => x.Amenities)
+                                                  .ToListAsync();
+            return amenities;
+        }
     }
 }

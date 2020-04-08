@@ -8,7 +8,7 @@ namespace AsyncInn.Models
     public class RoomAmenities
     {   // RoomID and AmenitiesID constitute a Composite Key for RoomAmenities.
         public int RoomID { get; set; }
-        public string AmenitiesID { get; set; }
+        public int AmenitiesID { get; set; }
 
         // Below are the Nav Properties for RoomAmenities. This model links to the Room and Amenities models. 
         public Room Room { get; set; }

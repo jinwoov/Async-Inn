@@ -21,5 +21,8 @@ namespace AsyncInn.Models.Interfaces
 
         //Delete
         Task<Room> DeleteRoom(int ID);
+
+        //The below will grab all the amenities inside RoomAmenities
+        Task<List<RoomAmenities>> AmenitiesByRoomID(int ID); 
     }
 }

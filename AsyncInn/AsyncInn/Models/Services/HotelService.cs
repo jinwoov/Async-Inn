@@ -46,6 +46,16 @@ namespace AsyncInn.Models.Services
         //The below method will get all hotels.
         public async Task<List<Hotel>> GetHotels() => await _context.Hotel.ToListAsync();
 
+        public async Task<List<HotelRooms>> GetRoomsByHotelID(int ID)
+        {
+            var hotelRooms = await _context.HotelRoom.Where(x => x.HotelID == ID)
+                                                     .Include(x => x.Room)
+                                                     .ThenInclude(x => x.RoomAmenities)
+                                                     .ThenInclude(x => x.Amenities)
+                                                     .ToListAsync();
+            return hotelRooms;
+        }
+
         //The below method will update a specific hotel.
         public async Task UpdateHotel(Hotel hotel)
         {

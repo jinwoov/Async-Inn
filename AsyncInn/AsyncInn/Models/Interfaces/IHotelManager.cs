@@ -21,5 +21,8 @@ namespace AsyncInn.Models.Interfaces
 
         //Delete
         Task<Hotel> DeleteHotel(int ID);
+
+        //The below connects Hotel Rooms to Rooms by a join table. 
+        Task<List<HotelRooms>> GetRoomsByHotelID(int ID);
     }
 }

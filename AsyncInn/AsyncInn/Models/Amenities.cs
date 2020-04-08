@@ -13,6 +13,6 @@ namespace AsyncInn.Models
         public string Name { get; set; }
 
         // These are the Nav Properies, this model links to RoomAmenities. 
-        List<RoomAmenities> RoomAmenities = new List<RoomAmenities>();
+        public List<RoomAmenities> RoomAmenities = new List<RoomAmenities>();
     }
 }
