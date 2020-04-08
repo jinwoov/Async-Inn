@@ -23,60 +23,6 @@ namespace AsyncInn.Controllers
             _context = context;
         }
 
-        // GET: api/RoomAmenities
-        /// Get route that is shows list of RoomAmenities in the method
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<RoomAmenities>>> GetRoomAmenities()
-        {
-            return await _context.RoomAmenities.ToListAsync();
-        }
-
-        // GET: api/RoomAmenities/5
-        /// Get route that shows specific RoomAmenities when user picks
-        [HttpGet("{id}")]
-        public async Task<ActionResult<RoomAmenities>> GetRoomAmenities(string id)
-        {
-            var roomAmenities = await _context.RoomAmenities.FindAsync(id);
-
-            if (roomAmenities == null)
-            {
-                return NotFound();
-            }
-
-            return roomAmenities;
-        }
-
-        // PUT: api/RoomAmenities/5
-        // Update method that checks for the ID and change if it does exist otherwise returns bad request
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoomAmenities(string id, RoomAmenities roomAmenities)
-        {
-            if (id != roomAmenities.AmenitiesID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(roomAmenities).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomAmenitiesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/RoomAmenities
         // Creates new RoomAmenities when user input information
         [HttpPost]
