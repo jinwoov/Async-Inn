@@ -9,13 +9,13 @@ namespace AsyncInn.Models.Interfaces
     public interface IAmenitiesManager
     {
         //Create
-        Task<Amenities> CreateAmenity(Amenities amenities);
+        Task<AmenitiesDTO> CreateAmenity(Amenities amenities);
 
         //Read
         Task<AmenitiesDTO> GetAmenity(int ID);
 
         //Read all amenities
-        Task<List<Amenities>> GetAmenities();
+        Task<List<AmenitiesDTO>> GetAmenities();
 
         //Update
         Task UpdateAmenity(Amenities amenities);

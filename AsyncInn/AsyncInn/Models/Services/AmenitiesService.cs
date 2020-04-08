@@ -26,13 +26,14 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="amenities">Amenity object that is being created</param>
         /// <returns>Object that's been created</returns>
-        public async Task<Amenities> CreateAmenity(Amenities amenities)
+        public async Task<AmenitiesDTO> CreateAmenity(Amenities amenities)
         {
+            var amenitiesDTO = ConvertToDTO(amenities);
             _context.Add(amenities);
 
             await _context.SaveChangesAsync();
 
-            return amenities;
+            return amenitiesDTO;
         }
 
         /// <summary>
@@ -55,7 +56,21 @@ namespace AsyncInn.Models.Services
         /// Delegating the ToListAsync method to occur using asynchronous method of GetAmenities
         /// </summary>
         /// <returns>List of amenities</returns>
-        public async Task<List<Amenities>> GetAmenities() => await _context.Amenities.ToListAsync();
+        public async Task<List<AmenitiesDTO>> GetAmenities()
+        {
+            var amenities = await _context.Amenities.ToListAsync();
+            List<AmenitiesDTO> adto = new List<AmenitiesDTO>();
+            foreach (var item in amenities)
+            {
+                AmenitiesDTO dTO = new AmenitiesDTO()
+                {
+                    ID = item.ID,
+                    Name = item.Name
+                };
+                adto.Add(dTO);
+            }
+            return adto;
+        }
 
         /// <summary>
         /// Delegating the FindAsync method to occur using asynchronous method of GetAmenity
