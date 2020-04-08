@@ -48,6 +48,7 @@ Postman example ammenities
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 4.1: *Created interfaces and services for dependency injection and applied it to our controller* April 7, 2020
 - 4.0: *Added dependency injection in to our project using interface and services* April 7, 2020
 - 3.3: *Controllers added for all models* April 6, 2020
 - 3.2: *Room, Hotel and Amenities dbs seeded with hardcoded data.* April 6, 2020
