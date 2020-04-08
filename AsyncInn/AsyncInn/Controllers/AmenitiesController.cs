@@ -28,7 +28,7 @@ namespace AsyncInn.Controllers
         // GET: api/Amenities
         /// Get route that is shows list of amenities in the method
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities() => await _context.GetAmenities();
+        public async Task<ActionResult<IEnumerable<AmenitiesDTO>>> GetAmenities() => await _context.GetAmenities();
 
         // GET: api/Amenities/5
         /// Get route that shows specific amenity when user picks
@@ -77,7 +77,7 @@ namespace AsyncInn.Controllers
         // POST: api/Amenities
         // Creates new amenity when user input information
         [HttpPost]
-        public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
+        public async Task<ActionResult<AmenitiesDTO>> PostAmenities(Amenities amenities)
         {
             var newAmmenity = await _context.CreateAmenity(amenities);
 
