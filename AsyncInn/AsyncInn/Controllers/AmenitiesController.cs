@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
 using AsyncInn.Models.Interfaces;
+using AsyncInn.Models.DTO;
 
 namespace AsyncInn.Controllers
 {
@@ -32,7 +33,7 @@ namespace AsyncInn.Controllers
         // GET: api/Amenities/5
         /// Get route that shows specific amenity when user picks
         [HttpGet("{id}")]
-        public async Task<ActionResult<Amenities>> GetAmenities(int id)
+        public async Task<ActionResult<AmenitiesDTO>> GetAmenities(int id)
         {
             var amenities = await _context.GetAmenity(id);
 
@@ -99,7 +100,7 @@ namespace AsyncInn.Controllers
         /// checks if the amenity id exists in the database
         private async Task<bool> AmenitiesExists(int id)
         {
-            Amenities amenities = await _context.GetAmenity(id);
+            AmenitiesDTO amenities = await _context.GetAmenity(id);
 
             return amenities != null ? true : false;
         }

@@ -29,21 +29,7 @@ namespace AsyncInn.Controllers
         public async Task<ActionResult<RoomAmenities>> PostRoomAmenities(RoomAmenities roomAmenities)
         {
             _context.RoomAmenities.Add(roomAmenities);
-            try
-            {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (RoomAmenitiesExists(roomAmenities.AmenitiesID))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
             return CreatedAtAction("GetRoomAmenities", new { id = roomAmenities.AmenitiesID }, roomAmenities);
         }
@@ -64,11 +50,6 @@ namespace AsyncInn.Controllers
 
             return roomAmenities;
         }
-
-        /// checks if the RoomAmenities id exists in the database
-        private bool RoomAmenitiesExists(string id)
-        {
-            return _context.RoomAmenities.Any(e => e.AmenitiesID == id);
-        }
+  
     }
 }

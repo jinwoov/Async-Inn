@@ -1,4 +1,5 @@
 ﻿using AsyncInn.Data;
+using AsyncInn.Models.DTO;
 using AsyncInn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -61,7 +62,11 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="ID">Id of the amenity</param>
         /// <returns>the specific amenity</returns>
-        public async Task<Amenities> GetAmenity(int ID) => await _context.Amenities.FindAsync(ID);
+        public async Task<AmenitiesDTO> GetAmenity(int ID)
+        {
+            Amenities amenities = await _context.Amenities.FindAsync(ID);
+            return ConvertToDTO(amenities);
+        }
 
         /// <summary>
         /// This is to update an existing amenity
@@ -73,5 +78,17 @@ namespace AsyncInn.Models.Services
 
             await _context.SaveChangesAsync();
         }
+
+        public AmenitiesDTO ConvertToDTO(Amenities amenities)
+        {
+            AmenitiesDTO adto = new AmenitiesDTO()
+            {
+                Name = amenities.Name,
+                ID = amenities.ID
+            };
+
+            return adto;
+        }   
+
     }
 }
