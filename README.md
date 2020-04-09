@@ -20,7 +20,7 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 Final result of our postman search
 
 ![Postman](./assets/Postman.png)
-Postman example amenity
+Postman screenshot of middle of building process
 
 #### ERD Diagram
 ![Application based on this model](./assets/AsyncInn2.png)
@@ -50,6 +50,7 @@ Postman example amenity
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 6.2: *Summary comments are added* April 10 2020
 - 6.1: *Completed application and updated final README documentation* April 10 2020
 - 6.0: *Seed the new information and implementation of hotelDTO is finished* April 9 2020
 - 5.3: *The update method for hotel room is updated* April 8, 2020
