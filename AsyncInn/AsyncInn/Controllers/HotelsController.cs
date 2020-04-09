@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
 using AsyncInn.Models.Interfaces;
+using AsyncInn.Models.DTO;
 
 namespace AsyncInn.Controllers
 {
@@ -27,12 +28,12 @@ namespace AsyncInn.Controllers
         // GET: api/Hotels
         /// Get route that is shows list of Hotel in the method
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel() => await _context.GetHotels();
+        public async Task<ActionResult<IEnumerable<HotelDTO>>> GetHotel() => await _context.GetHotels();
 
         // GET: api/Hotels/5
         /// Get route that shows specific Hotel when user picks
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<HotelDTO>> GetHotel(int id)
         {
             var hotel = await _context.GetHotel(id);
 
@@ -100,7 +101,7 @@ namespace AsyncInn.Controllers
         /// checks if the Hotel id exists in the database
         private async Task<bool> HotelExists(int id)
         {
-            Hotel hotel = await _context.GetHotel(id);
+            HotelDTO hotel = await _context.GetHotel(id);
             return hotel != null ? true : false;
         }
     }
