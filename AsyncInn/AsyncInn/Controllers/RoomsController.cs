@@ -35,7 +35,11 @@ namespace AsyncInn.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
+            var roomAmenities = await _context.AmenitiesByRoomID(id);
             var room = await _context.GetRoom(id);
+
+
+            room.Amenities = roomAmenities;
 
             if (room == null)
             {

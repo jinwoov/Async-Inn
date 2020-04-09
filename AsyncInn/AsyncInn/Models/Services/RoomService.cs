@@ -14,10 +14,12 @@ namespace AsyncInn.Models.Services
     public class RoomService : IRoomManager
     {
         private AsyncInnDbContext _context { get; }
+        private IAmenitiesManager _amenityContext { get; }
 
-        public RoomService(AsyncInnDbContext context)
+        public RoomService(AsyncInnDbContext context, IAmenitiesManager amenityContext)
         {
             _context = context;
+            _amenityContext = amenityContext;
         }
 
         /// <summary>
@@ -94,11 +96,18 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<RoomAmenities>> AmenitiesByRoomID(int ID)
+        public async Task<List<AmenitiesDTO>> AmenitiesByRoomID(int ID)
         {
-            var amenities = await _context.RoomAmenities.Where(x => x.RoomID == ID)
-                                                  .Include(x => x.Amenities)
-                                                  .ToListAsync();
+            var roomAmenities = await _context.RoomAmenities.Where(x => x.RoomID == ID).ToListAsync();
+
+            List<AmenitiesDTO> amenities = new List<AmenitiesDTO>();
+
+            foreach (var amenity in roomAmenities)
+            {
+                AmenitiesDTO amenit = await _amenityContext.GetAmenity(amenity.AmenitiesID);
+                amenities.Add(amenit);
+            }
+
             return amenities;
         }
 
