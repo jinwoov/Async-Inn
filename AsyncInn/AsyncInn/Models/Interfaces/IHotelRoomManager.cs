@@ -12,7 +12,7 @@ namespace AsyncInn.Models.Interfaces
         Task<HotelRoomsDTO> CreateHotelRoom(HotelRooms hotelRooms);
 
         //Read
-        Task<List<HotelRoomsDTO>> GetHotelRoom(int ID);
+        Task<HotelRoomsDTO> GetHotelRoom(int ID, int roomNumber);
 
         //Read all hotelRooms
         Task<List<HotelRoomsDTO>> GetHotelRooms();

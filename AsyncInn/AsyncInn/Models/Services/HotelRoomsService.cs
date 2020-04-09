@@ -78,12 +78,18 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="ID">specific hotel room</param>
         /// <returns>the specific hotel room</returns>
-        public async Task<List<HotelRoomsDTO>> GetHotelRoom(int ID)
+        public async Task<HotelRoomsDTO> GetHotelRoom(int ID, int roomNumber)
         {
-            var hotelRoom = await _context.HotelRoom.Where(x => x.HotelID == ID)
-                                                    .ToListAsync();
+            var hotelRoom = await _context.HotelRoom.Where(x => x.HotelID == ID && x.RoomNumber == roomNumber)
+                                                    .SingleAsync();
 
-            return ConverToDTO(hotelRoom);
+            HotelRoomsDTO hRDTO = ConverToDTO(hotelRoom);
+
+            RoomDTO room = await GetByRoomNumber(ID, roomNumber);
+
+            hRDTO.Room = room;
+
+            return hRDTO;
         }
 
         /// <summary>
@@ -123,23 +129,18 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public List<HotelRoomsDTO> ConverToDTO(List<HotelRooms> hotelRooms)
+        public HotelRoomsDTO ConverToDTO(HotelRooms hotelRooms)
         {
-            List<HotelRoomsDTO> listDTO = new List<HotelRoomsDTO>();
-            foreach (var hRoom in hotelRooms)
-            {
                 HotelRoomsDTO adto = new HotelRoomsDTO()
                 {
-                    HotelID = hRoom.HotelID,
-                    RoomNumber = hRoom.RoomNumber,
-                    Rate = hRoom.Rate,
-                    PetFriendly = hRoom.PetFriendly,
-                    RoomID = hRoom.RoomID
+                    HotelID = hotelRooms.HotelID,
+                    RoomNumber = hotelRooms.RoomNumber,
+                    Rate = hotelRooms.Rate,
+                    PetFriendly = hotelRooms.PetFriendly,
+                    RoomID = hotelRooms.RoomID
                 };
-                listDTO.Add(adto);
-            }
 
-            return listDTO;
+            return adto;
         }
     }
 }

@@ -34,15 +34,9 @@ namespace AsyncInn.Controllers
         // GET: api/HotelRooms/5
         /// Get route that shows specific HotelRooms when user picks
         [HttpGet, Route("{hotelId}/{roomNumber}")]
-        public async Task<ActionResult<List<HotelRoomsDTO>>> GetHotelRooms(int hotelId, int roomNumber)
+        public async Task<ActionResult<HotelRoomsDTO>> GetHotelRooms(int hotelId, int roomNumber)
         {
-            var room = await _context.GetByRoomNumber(hotelId, roomNumber);
-            var hotelRooms = await _context.GetHotelRoom(hotelId);
-
-            foreach (var item in hotelRooms)
-            {
-                item.Room = room;
-            }
+            var hotelRooms = await _context.GetHotelRoom(hotelId, roomNumber);
 
             if (hotelRooms == null)
             {
