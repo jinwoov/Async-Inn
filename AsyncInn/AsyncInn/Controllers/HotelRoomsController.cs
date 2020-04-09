@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
 using AsyncInn.Models.Interfaces;
+using AsyncInn.Models.DTO;
 
 namespace AsyncInn.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/hotel/room")]
     [ApiController]
     public class HotelRoomsController : ControllerBase
     {
@@ -27,14 +28,15 @@ namespace AsyncInn.Controllers
         // GET: api/HotelRooms
         /// Get route that is shows list of HotelRooms in the method
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HotelRooms>>> GetHotelRoom() => await _context.GetHotelRooms();
+        public async Task<ActionResult<IEnumerable<HotelRoomsDTO>>> GetHotelRoom() => await _context.GetHotelRooms();
+
 
         // GET: api/HotelRooms/5
         /// Get route that shows specific HotelRooms when user picks
-        [HttpGet("{id}")]
-        public async Task<ActionResult<HotelRooms>> GetHotelRooms(int id)
+        [HttpGet, Route("{hotelId}/{roomNumber}")]
+        public async Task<ActionResult<HotelRoomsDTO>> GetHotelRooms(int hotelId, int roomNumber)
         {
-            var hotelRooms = await _context.GetHotelRoom(id);
+            var hotelRooms = await _context.GetHotelRoom(hotelId, roomNumber);
 
             if (hotelRooms == null)
             {
@@ -54,21 +56,8 @@ namespace AsyncInn.Controllers
                 return BadRequest();
             }
 
-            try
-            {
                 await _context.UpdateHotelRoom(hotelRooms);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (! await HotelRoomsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           
 
             return NoContent();
         }
@@ -96,11 +85,11 @@ namespace AsyncInn.Controllers
             return await _context.DeleteHotelRoom(id);
         }
 
-        /// checks if the HotelRooms id exists in the database
-        private async Task<bool> HotelRoomsExists(int id)
-        {
-            HotelRooms hotelRooms = await _context.GetHotelRoom(id);
-            return hotelRooms != null ? true : false;
-        }
+        ///// checks if the HotelRooms id exists in the database
+        //private async Task<bool> HotelRoomsExists(int id)
+        //{
+        //    HotelRoomsDTO hotelRooms = await _context.GetHotelRoom(id);
+        //    return hotelRooms != null ? true : false;
+        //}
     }
 }

@@ -36,6 +36,8 @@ namespace AsyncInn.Controllers
         {
             var hotel = await _context.GetHotel(id);
 
+
+
             if (hotel == null)
             {
                 return NotFound();

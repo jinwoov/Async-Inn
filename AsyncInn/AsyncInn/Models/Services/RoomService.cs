@@ -59,7 +59,13 @@ namespace AsyncInn.Models.Services
         public async Task<RoomDTO> GetRoom(int ID)
         {
             Room room = await _context.Room.FindAsync(ID);
-            return ConvertToDTO(room);
+            var roomAmenities = await AmenitiesByRoomID(ID);
+
+            RoomDTO rDTO = ConvertToDTO(room);
+
+            rDTO.Amenities = roomAmenities;
+
+            return rDTO;
         }
 
         /// <summary>
@@ -98,7 +104,8 @@ namespace AsyncInn.Models.Services
 
         public async Task<List<AmenitiesDTO>> AmenitiesByRoomID(int ID)
         {
-            var roomAmenities = await _context.RoomAmenities.Where(x => x.RoomID == ID).ToListAsync();
+            var roomAmenities = await _context.RoomAmenities.Where(x => x.RoomID == ID)
+                                                          .ToListAsync();
 
             List<AmenitiesDTO> amenities = new List<AmenitiesDTO>();
 

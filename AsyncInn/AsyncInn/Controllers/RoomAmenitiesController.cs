@@ -10,7 +10,7 @@ using AsyncInn.Models;
 
 namespace AsyncInn.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/room/amenities")]
     [ApiController]
     public class RoomAmenitiesController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace AsyncInn.Controllers
 
         // POST: api/RoomAmenities
         // Creates new RoomAmenities when user input information
-        [HttpPost]
+        [HttpPost, Route("{roomId}/{amenitiesId}")]
         public async Task<ActionResult<RoomAmenities>> PostRoomAmenities(RoomAmenities roomAmenities)
         {
             _context.RoomAmenities.Add(roomAmenities);

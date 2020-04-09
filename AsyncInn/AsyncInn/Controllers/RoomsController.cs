@@ -12,7 +12,7 @@ using AsyncInn.Models.DTO;
 
 namespace AsyncInn.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/rooms")]
     [ApiController]
     public class RoomsController : ControllerBase
     {
@@ -35,11 +35,8 @@ namespace AsyncInn.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
-            var roomAmenities = await _context.AmenitiesByRoomID(id);
             var room = await _context.GetRoom(id);
 
-
-            room.Amenities = roomAmenities;
 
             if (room == null)
             {

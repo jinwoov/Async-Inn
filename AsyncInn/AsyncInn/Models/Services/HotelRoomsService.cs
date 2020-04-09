@@ -1,4 +1,5 @@
 ﻿using AsyncInn.Data;
+using AsyncInn.Models.DTO;
 using AsyncInn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,23 +12,34 @@ namespace AsyncInn.Models.Services
     public class HotelRoomsService : IHotelRoomManager
     {
         private readonly AsyncInnDbContext _context;
+        private readonly IRoomManager _roomContext;
 
-        public HotelRoomsService(AsyncInnDbContext context)
+        public HotelRoomsService(AsyncInnDbContext context, IRoomManager roomContext)
         {
             _context = context;
+            _roomContext = roomContext;
         }
         /// <summary>
         /// creating a hotel room by user given information
         /// </summary>
         /// <param name="hotelRooms">hotel room object</param>
         /// <returns></returns>
-        public async Task<HotelRooms> CreateHotelRoom(HotelRooms hotelRooms)
+        public async Task<HotelRoomsDTO> CreateHotelRoom(HotelRooms hotelRooms)
         {
+            HotelRoomsDTO dTO = new HotelRoomsDTO()
+            {
+                HotelID = hotelRooms.HotelID,
+                RoomNumber = hotelRooms.RoomNumber,
+                Rate = hotelRooms.Rate,
+                PetFriendly = hotelRooms.PetFriendly,
+                RoomID = hotelRooms.RoomID
+            };
+
             _context.Add(hotelRooms);
 
             await _context.SaveChangesAsync();
 
-            return hotelRooms;
+            return dTO;
         }
         /// <summary>
         /// Deleting Hotel Room depending on user's choice
@@ -51,13 +63,14 @@ namespace AsyncInn.Models.Services
         /// <param name="hotelID">id of hotel</param>
         /// <param name="roomNumber">room number that was given</param>
         /// <returns>list of hotel rooms</returns>
-        public async Task<List<HotelRooms>> GetByRoomNumber(int hotelID, int roomNumber)
+        public async Task<RoomDTO> GetByRoomNumber(int hotelID, int roomNumber)
         {
             var hotelRooms = await _context.HotelRoom.Where(x => x.RoomNumber == roomNumber && x.HotelID == hotelID)
-                                               .Select(x => x)
-                                               .ToListAsync();
+                                               .SingleAsync();
 
-            return hotelRooms;
+             RoomDTO roomba = await _roomContext.GetRoom(hotelRooms.RoomID);
+
+             return roomba;
         }
 
         /// <summary>
@@ -65,13 +78,45 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="ID">specific hotel room</param>
         /// <returns>the specific hotel room</returns>
-        public async Task<HotelRooms> GetHotelRoom(int ID) => await _context.HotelRoom.FindAsync(ID);
+        public async Task<HotelRoomsDTO> GetHotelRoom(int ID, int roomNumber)
+        {
+            var hotelRoom = await _context.HotelRoom.Where(x => x.HotelID == ID && x.RoomNumber == roomNumber)
+                                                    .SingleAsync();
+
+            HotelRoomsDTO hRDTO = ConverToDTO(hotelRoom);
+
+            RoomDTO room = await GetByRoomNumber(ID, roomNumber);
+
+            hRDTO.Room = room;
+
+            return hRDTO;
+        }
 
         /// <summary>
         /// Method that will retrieve list of hotel rooms
         /// </summary>
         /// <returns>List of hotel rooms</returns>
-        public async Task<List<HotelRooms>> GetHotelRooms() => await _context.HotelRoom.ToListAsync();
+        public async Task<List<HotelRoomsDTO>> GetHotelRooms()
+        {
+            var hotelRoom = await _context.HotelRoom.ToListAsync();
+
+            List<HotelRoomsDTO> hotelList = new List<HotelRoomsDTO>();
+
+            foreach (var hotel in hotelRoom)
+            {
+                HotelRoomsDTO dTO = new HotelRoomsDTO()
+                {
+                    HotelID = hotel.HotelID,
+                    RoomNumber = hotel.RoomNumber,
+                    Rate = hotel.Rate,
+                    PetFriendly = hotel.PetFriendly,
+                    RoomID = hotel.RoomID
+                };
+                hotelList.Add(dTO);
+            }
+
+            return hotelList;
+        }
 
         /// <summary>
         /// Method that updates specific hotel room
@@ -82,6 +127,20 @@ namespace AsyncInn.Models.Services
             _context.Update(hotelRooms);
 
             await _context.SaveChangesAsync();
+        }
+
+        public HotelRoomsDTO ConverToDTO(HotelRooms hotelRooms)
+        {
+                HotelRoomsDTO adto = new HotelRoomsDTO()
+                {
+                    HotelID = hotelRooms.HotelID,
+                    RoomNumber = hotelRooms.RoomNumber,
+                    Rate = hotelRooms.Rate,
+                    PetFriendly = hotelRooms.PetFriendly,
+                    RoomID = hotelRooms.RoomID
+                };
+
+            return adto;
         }
     }
 }
