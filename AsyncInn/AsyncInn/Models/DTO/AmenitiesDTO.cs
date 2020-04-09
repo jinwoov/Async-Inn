@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.DTO
 {
+    // Amenities data transfer object that will normalize for viewer
     public class AmenitiesDTO
     {
         public int ID { get; set; }

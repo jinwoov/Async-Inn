@@ -16,6 +16,11 @@ namespace AsyncInn.Models.Services
         private AsyncInnDbContext _context { get; }
         private IAmenitiesManager _amenityContext { get; }
 
+        /// <summary>
+        /// Constructor that is using database context and amenities context
+        /// </summary>
+        /// <param name="context">Database context</param>
+        /// <param name="amenityContext">Amenitites interface context</param>
         public RoomService(AsyncInnDbContext context, IAmenitiesManager amenityContext)
         {
             _context = context;
@@ -102,6 +107,11 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Grabbing amenities using the room ID
+        /// </summary>
+        /// <param name="ID">Room ID</param>
+        /// <returns>Amenities DTO</returns>
         public async Task<List<AmenitiesDTO>> AmenitiesByRoomID(int ID)
         {
             var roomAmenities = await _context.RoomAmenities.Where(x => x.RoomID == ID)
@@ -118,6 +128,12 @@ namespace AsyncInn.Models.Services
             return amenities;
         }
 
+
+        /// <summary>
+        /// Converting room object to DTO object
+        /// </summary>
+        /// <param name="room">Room object</param>
+        /// <returns>Room DTO object</returns>
         public RoomDTO ConvertToDTO(Room room)
         {
             RoomDTO adto = new RoomDTO()

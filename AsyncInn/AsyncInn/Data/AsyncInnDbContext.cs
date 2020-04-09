@@ -143,6 +143,7 @@ namespace AsyncInn.Data
                     Name = "Jacuzi Tub"
                 }
             );
+            // Hotel Room data
             modelBuilder.Entity<HotelRooms>().HasData(
                 new HotelRooms
                 {

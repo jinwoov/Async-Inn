@@ -129,6 +129,12 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
+
+        /// <summary>
+        /// Converting our object to DTO object
+        /// </summary>
+        /// <param name="hotelRooms">hotelroom object</param>
+        /// <returns>hotelroom DTO object</returns>
         public HotelRoomsDTO ConverToDTO(HotelRooms hotelRooms)
         {
                 HotelRoomsDTO adto = new HotelRoomsDTO()

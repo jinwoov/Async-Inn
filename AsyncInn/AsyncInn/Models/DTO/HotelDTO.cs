@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.DTO
 {
+    // Hotels data transfer object that will normalize for viewer
+
     public class HotelDTO
     {
         public int ID { get; set; }
