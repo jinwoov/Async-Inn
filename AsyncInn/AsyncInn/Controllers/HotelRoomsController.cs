@@ -48,15 +48,15 @@ namespace AsyncInn.Controllers
 
         // PUT: api/HotelRooms/5
         // Update method that checks for the ID and change if it does exist otherwise return bad request
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotelRooms(int id, HotelRooms hotelRooms)
+        [HttpPut, Route("{hotelId}/{roomNumber}")]
+        public async Task<IActionResult> PutHotelRooms(int hotelId, HotelRooms hotelRooms)
         {
-            if (id != hotelRooms.HotelID)
+            if (hotelId != hotelRooms.HotelID)
             {
                 return BadRequest();
             }
 
-                await _context.UpdateHotelRoom(hotelRooms);
+            await _context.UpdateHotelRoom(hotelRooms);
            
 
             return NoContent();
