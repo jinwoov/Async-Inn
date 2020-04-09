@@ -62,11 +62,7 @@ namespace AsyncInn.Models.Services
             List<AmenitiesDTO> adto = new List<AmenitiesDTO>();
             foreach (var item in amenities)
             {
-                AmenitiesDTO dTO = new AmenitiesDTO()
-                {
-                    ID = item.ID,
-                    Name = item.Name
-                };
+                AmenitiesDTO dTO = ConvertToDTO(item);
                 adto.Add(dTO);
             }
             return adto;
@@ -98,8 +94,8 @@ namespace AsyncInn.Models.Services
         {
             AmenitiesDTO adto = new AmenitiesDTO()
             {
-                Name = amenities.Name,
-                ID = amenities.ID
+                ID = amenities.ID,
+                Name = amenities.Name
             };
 
             return adto;

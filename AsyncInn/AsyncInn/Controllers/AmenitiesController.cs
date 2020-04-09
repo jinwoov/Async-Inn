@@ -12,7 +12,7 @@ using AsyncInn.Models.DTO;
 
 namespace AsyncInn.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/amenities")]
     [ApiController]
     public class AmenitiesController : ControllerBase
     {
