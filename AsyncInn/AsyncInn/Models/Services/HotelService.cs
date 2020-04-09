@@ -39,29 +39,40 @@ namespace AsyncInn.Models.Services
         }
 
         //The below method will get one specific hotel.
-        public async Task<Hotel> GetHotel(int ID)
+        public async Task<HotelDTO> GetHotel(int ID)
         {
             var hotels = await _context.Hotel.FindAsync(ID);
-            return hotels;
+            HotelDTO hDTO = ConvertToDTO(hotels);
+            hDTO.Rooms = await GetRoomsByHotelID(ID);
+            return hDTO;
 
         }
 
         //The below method will get all hotels.
-        public async Task<List<Hotel>> GetHotels() => await _context.Hotel.ToListAsync();
+        public async Task<List<HotelDTO>> GetHotels()
+        {
+            List<Hotel> hotel = await _context.Hotel.ToListAsync();
+            List<HotelDTO> hDTO = new List<HotelDTO>();
+            foreach (var item in hotel)
+            {
+                HotelDTO aDTO = ConvertToDTO(item);
+                hDTO.Add(aDTO);
+            }
+            return hDTO;
+        }
 
         public async Task<List<HotelRoomsDTO>> GetRoomsByHotelID(int ID)
         {
             var hotelRooms = await _context.HotelRoom.Where(x => x.HotelID == ID)
-                                                     .Include(r => r.RoomID)
                                                      .ToListAsync();
 
             List<HotelRoomsDTO> rooms = new List<HotelRoomsDTO>();
 
-            //foreach (var room in hotelRooms)
-            //{
-            //    HotelRoomsDTO roomba = await _roomContext.GetHotelRoom(room.RoomID);
-            //    rooms.Add(roomba);
-            //}
+            foreach (var room in hotelRooms)
+            {
+                HotelRoomsDTO roomba = await _roomContext.GetHotelRoom(room.RoomID, room.RoomNumber);
+                rooms.Add(roomba);
+            }
 
             return rooms;
         }
@@ -72,5 +83,20 @@ namespace AsyncInn.Models.Services
             _context.Update(hotel);
             await _context.SaveChangesAsync();
         }
+
+        public HotelDTO ConvertToDTO(Hotel hotel)
+        {
+            HotelDTO hDTO = new HotelDTO()
+            {
+                ID = hotel.ID,
+                Name = hotel.Name,
+                StreetAddress = hotel.StreetAddress,
+                City = hotel.City,
+                State = hotel.State,
+                Phone = hotel.Phone
+            };
+            return hDTO;
+        }
+            
     }
 }
