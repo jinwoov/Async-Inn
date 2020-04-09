@@ -48,6 +48,7 @@ Postman example ammenities
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 5.3: *The update method for hotel room is updated* April 8, 2020
 - 5.2: *Created a DTO for HotelRoom and connected all of the data together.* April 8, 2020
 - 5.3: *Created a DTO for Amenities and room is connected* April 8, 2020
 - 5.0: *Added Amenities DTO and refactored Get andd Push code to accept.* April 8, 2020
