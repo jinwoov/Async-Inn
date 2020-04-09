@@ -84,12 +84,5 @@ namespace AsyncInn.Controllers
 
             return await _context.DeleteHotelRoom(id);
         }
-
-        ///// checks if the HotelRooms id exists in the database
-        //private async Task<bool> HotelRoomsExists(int id)
-        //{
-        //    HotelRoomsDTO hotelRooms = await _context.GetHotelRoom(id);
-        //    return hotelRooms != null ? true : false;
-        //}
     }
 }

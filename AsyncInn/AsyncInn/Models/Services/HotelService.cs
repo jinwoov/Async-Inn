@@ -61,6 +61,11 @@ namespace AsyncInn.Models.Services
             return hDTO;
         }
 
+        /// <summary>
+        /// Getting the hotel room data using the hotel ID 
+        /// </summary>
+        /// <param name="ID">ID of hotel</param>
+        /// <returns>List of hotel room DTO</returns>
         public async Task<List<HotelRoomsDTO>> GetRoomsByHotelID(int ID)
         {
             var hotelRooms = await _context.HotelRoom.Where(x => x.HotelID == ID)
@@ -84,6 +89,11 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Converting the hotel object to DTO object
+        /// </summary>
+        /// <param name="hotel">hotel object that is being passed in</param>
+        /// <returns>hotel DTO object</returns>
         public HotelDTO ConvertToDTO(Hotel hotel)
         {
             HotelDTO hDTO = new HotelDTO()

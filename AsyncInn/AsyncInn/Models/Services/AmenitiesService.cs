@@ -16,6 +16,10 @@ namespace AsyncInn.Models.Services
     {
         private AsyncInnDbContext _context { get; }
 
+        /// <summary>
+        ///  Constructor for amenities
+        /// </summary>
+        /// <param name="context"></param>
         public AmenitiesService(AsyncInnDbContext context)
         {
             _context = context;
@@ -90,6 +94,11 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Converting our object to DTO object
+        /// </summary>
+        /// <param name="amenities">amenities object</param>
+        /// <returns>amenities DTO object</returns>
         public AmenitiesDTO ConvertToDTO(Amenities amenities)
         {
             AmenitiesDTO adto = new AmenitiesDTO()
