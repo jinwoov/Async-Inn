@@ -154,27 +154,11 @@ namespace AsyncInn.Data
                 },
                 new HotelRooms
                 {
-                    HotelID = 1,
-                    RoomID = 2,
-                    RoomNumber = 102,
-                    PetFriendly = true,
-                    Rate = 100.00m
-                },
-                new HotelRooms
-                {
                     HotelID = 2,
                     RoomID = 1,
                     RoomNumber = 1200,
                     PetFriendly = false,
                     Rate = 200.00m
-                },
-                new HotelRooms
-                {
-                    HotelID = 2,
-                    RoomID = 2,
-                    RoomNumber = 1300,
-                    PetFriendly = true,
-                    Rate = 220.00m
                 }
                 );
         }
