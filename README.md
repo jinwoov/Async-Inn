@@ -2,7 +2,7 @@
 
 ----
 
-Lab 12, 13, 14, 15, 16 - Databases & ERDs
+Lab 12, 13, 14, 15, 16, 17 - Databases & ERDs
 
 *Author: Matthew Johnson, Jin Kim*
 
@@ -17,9 +17,10 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 
 ### Screenshots
 ![Postman](./assets/final-result.png)
+Final result of our postman search
 
 ![Postman](./assets/Postman.png)
-Postman example ammenities
+Postman example amenity
 
 #### ERD Diagram
 ![Application based on this model](./assets/AsyncInn2.png)
@@ -49,6 +50,7 @@ Postman example ammenities
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 6.1: *Completed application and updated final README documentation* April 10 2020
 - 6.0: *Seed the new information and implementation of hotelDTO is finished* April 9 2020
 - 5.3: *The update method for hotel room is updated* April 8, 2020
 - 5.2: *Created a DTO for HotelRoom and connected all of the data together.* April 8, 2020
