@@ -16,6 +16,7 @@ This lab demonstrate your uses of hotel scenario to practice setting up for ERD.
 ### Visuals
 
 ### Screenshots
+![Postman](./assets/final-result.png)
 
 ![Postman](./assets/Postman.png)
 Postman example ammenities
@@ -48,6 +49,7 @@ Postman example ammenities
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 6.0: *Seed the new information and implementation of hotelDTO is finished* April 9 2020
 - 5.3: *The update method for hotel room is updated* April 8, 2020
 - 5.2: *Created a DTO for HotelRoom and connected all of the data together.* April 8, 2020
 - 5.3: *Created a DTO for Amenities and room is connected* April 8, 2020
