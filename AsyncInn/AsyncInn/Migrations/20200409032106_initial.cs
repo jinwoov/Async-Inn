@@ -2,7 +2,7 @@
 
 namespace AsyncInn.Migrations
 {
-    public partial class modelsAndTablesBuilt : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,14 +55,14 @@ namespace AsyncInn.Migrations
                 columns: table => new
                 {
                     HotelID = table.Column<int>(nullable: false),
-                    RoomID = table.Column<int>(nullable: false),
                     RoomNumber = table.Column<int>(nullable: false),
+                    RoomID = table.Column<int>(nullable: false),
                     PetFriendly = table.Column<bool>(nullable: false),
                     Rate = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelRoom", x => new { x.HotelID, x.RoomID });
+                    table.PrimaryKey("PK_HotelRoom", x => new { x.HotelID, x.RoomNumber });
                     table.ForeignKey(
                         name: "FK_HotelRoom_Hotel_HotelID",
                         column: x => x.HotelID,
@@ -82,18 +82,17 @@ namespace AsyncInn.Migrations
                 columns: table => new
                 {
                     RoomID = table.Column<int>(nullable: false),
-                    AmenitiesID = table.Column<string>(nullable: false),
-                    AmenitiesID1 = table.Column<int>(nullable: true)
+                    AmenitiesID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoomAmenities", x => new { x.AmenitiesID, x.RoomID });
                     table.ForeignKey(
-                        name: "FK_RoomAmenities_Amenities_AmenitiesID1",
-                        column: x => x.AmenitiesID1,
+                        name: "FK_RoomAmenities_Amenities_AmenitiesID",
+                        column: x => x.AmenitiesID,
                         principalTable: "Amenities",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RoomAmenities_Room_RoomID",
                         column: x => x.RoomID,
@@ -102,15 +101,58 @@ namespace AsyncInn.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Amenities",
+                columns: new[] { "ID", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Coffee Maker" },
+                    { 2, "Minibar" },
+                    { 3, "Water View" },
+                    { 4, "King Bed" },
+                    { 5, "Jacuzi Tub" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotel",
+                columns: new[] { "ID", "City", "Name", "Phone", "State", "StreetAddress" },
+                values: new object[,]
+                {
+                    { 1, "Seattle", "Seattle", "(206) 682-7453", "WA", "85 Pike St" },
+                    { 2, "Bellevue", "Bellevue", "(425) 646-3660", "WA", "575 Bellevue Sq" },
+                    { 3, "Lynnwood", "Lynnwood", "(425) 771-1121", "WA", "3000 184th St. SW" },
+                    { 4, "Tukwila", "Tukwila", "(206) 246-0423", "WA", "2800 Southcenter Mall" },
+                    { 5, "Federal Way", "Federal Way", "(253) 275-3303", "WA", "1928-B South Commons" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "ID", "Layout", "Name" },
+                values: new object[,]
+                {
+                    { 1, 0, "Capitol Hill" },
+                    { 2, 2, "Queen Anne" },
+                    { 3, 2, "Lake City" },
+                    { 4, 1, "Beacon Hill" },
+                    { 5, 0, "Pike Place" },
+                    { 6, 1, "Columbia City" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "HotelRoom",
+                columns: new[] { "HotelID", "RoomNumber", "PetFriendly", "Rate", "RoomID" },
+                values: new object[,]
+                {
+                    { 1, 101, false, 80.00m, 1 },
+                    { 2, 1200, false, 200.00m, 1 },
+                    { 1, 102, true, 100.00m, 2 },
+                    { 2, 1300, true, 220.00m, 2 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRoom_RoomID",
                 table: "HotelRoom",
                 column: "RoomID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoomAmenities_AmenitiesID1",
-                table: "RoomAmenities",
-                column: "AmenitiesID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoomAmenities_RoomID",

@@ -1,4 +1,5 @@
 ﻿using AsyncInn.Data;
+using AsyncInn.Models.DTO;
 using AsyncInn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,10 +14,12 @@ namespace AsyncInn.Models.Services
     public class RoomService : IRoomManager
     {
         private AsyncInnDbContext _context { get; }
+        private IAmenitiesManager _amenityContext { get; }
 
-        public RoomService(AsyncInnDbContext context)
+        public RoomService(AsyncInnDbContext context, IAmenitiesManager amenityContext)
         {
             _context = context;
+            _amenityContext = amenityContext;
         }
 
         /// <summary>
@@ -24,11 +27,15 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="room">Room object that is being created</param>
         /// <returns>Object that's been created</returns>
-        public async Task<Room> CreateRoom(Room room)
+        public async Task<RoomDTO> CreateRoom(Room room)
         {
+            var roomDTO = ConvertToDTO(room);
+
             _context.Add(room);
+
             await _context.SaveChangesAsync();
-            return room;
+
+            return roomDTO;
         }
 
         /// <summary>
@@ -49,14 +56,35 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="ID">ID of the room</param>
         /// <returns>the specific room</returns>
-        public async Task<Room> GetRoom(int ID) => await _context.Room.FindAsync(ID);
+        public async Task<RoomDTO> GetRoom(int ID)
+        {
+            Room room = await _context.Room.FindAsync(ID);
+            return ConvertToDTO(room);
+        }
 
         /// <summary>
         /// Delegating the ToListAsync method to occur using ansyncronous method of GetRooms
         /// </summary>
         /// <returns>List of rooms</returns>
-        public async Task<List<Room>> GetRooms() => await _context.Room.ToListAsync();
+        public async Task<List<RoomDTO>> GetRooms()
+        {
+            var rooms = await _context.Room.ToListAsync();
 
+            List<RoomDTO> adto = new List<RoomDTO>();
+
+            foreach (var item in rooms)
+            {
+                RoomDTO dTO = new RoomDTO()
+                {
+                    ID = item.ID,
+                    Name = item.Name,
+                    Layout = item.Layout.ToString()
+                };
+                adto.Add(dTO);
+            }
+
+            return adto;
+        }
        /// <summary>
        /// This is to update an existing room
        /// </summary>
@@ -68,12 +96,31 @@ namespace AsyncInn.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<RoomAmenities>> AmenitiesByRoomID(int ID)
+        public async Task<List<AmenitiesDTO>> AmenitiesByRoomID(int ID)
         {
-            var amenities = await _context.RoomAmenities.Where(x => x.RoomID == ID)
-                                                  .Include(x => x.Amenities)
-                                                  .ToListAsync();
+            var roomAmenities = await _context.RoomAmenities.Where(x => x.RoomID == ID).ToListAsync();
+
+            List<AmenitiesDTO> amenities = new List<AmenitiesDTO>();
+
+            foreach (var amenity in roomAmenities)
+            {
+                AmenitiesDTO amenit = await _amenityContext.GetAmenity(amenity.AmenitiesID);
+                amenities.Add(amenit);
+            }
+
             return amenities;
         }
+
+        public RoomDTO ConvertToDTO(Room room)
+        {
+            RoomDTO adto = new RoomDTO()
+            {
+                Name = room.Name,
+                ID = room.ID,
+                Layout = room.Layout.ToString()
+            };
+            return adto;
+        }
+
     }
 }

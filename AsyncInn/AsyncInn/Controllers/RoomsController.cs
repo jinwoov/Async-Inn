@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
 using AsyncInn.Models.Interfaces;
+using AsyncInn.Models.DTO;
 
 namespace AsyncInn.Controllers
 {
@@ -27,14 +28,18 @@ namespace AsyncInn.Controllers
         // GET: api/Rooms
         // Get route that is shows list of Room in the method
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRoom() => await _context.GetRooms();
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRoom() => await _context.GetRooms();
 
         // GET: api/Rooms/5
         /// Get route that shows specific Room when user picks
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
+            var roomAmenities = await _context.AmenitiesByRoomID(id);
             var room = await _context.GetRoom(id);
+
+
+            room.Amenities = roomAmenities;
 
             if (room == null)
             {
@@ -76,7 +81,7 @@ namespace AsyncInn.Controllers
         // POST: api/Rooms
         // Creates new Rooms when user input information
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<RoomDTO>> PostRoom(Room room)
         {
             var newRoom = await _context.CreateRoom(room);
 
@@ -98,7 +103,7 @@ namespace AsyncInn.Controllers
         /// checks if the Room id exists in the database
         private async Task<bool> RoomExists(int id)
         {
-            Room room = await _context.GetRoom(id);
+            RoomDTO room = await _context.GetRoom(id);
             return room != null ? true : false;
         }
     }

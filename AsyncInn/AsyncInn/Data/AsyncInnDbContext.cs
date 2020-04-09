@@ -1,4 +1,5 @@
 ﻿using AsyncInn.Models;
+using AsyncInn.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace AsyncInn.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   
             //The below methods create the Composite keys for HotelRooms and RoomAmenities.
-            modelBuilder.Entity<HotelRooms>().HasKey(x => new { x.HotelID, x.RoomID });
+            modelBuilder.Entity<HotelRooms>().HasKey(x => new { x.HotelID, x.RoomNumber });
             modelBuilder.Entity<RoomAmenities>().HasKey(x => new { x.AmenitiesID, x.RoomID });
 
             // The below method seeds the Room table with data.
