@@ -2,7 +2,7 @@
 
 ----
 
-Lab 12, 13, 14, 15 - Databases & ERDs
+Lab 12, 13, 14, 15, 16 - Databases & ERDs
 
 *Author: Matthew Johnson, Jin Kim*
 
@@ -48,7 +48,9 @@ Postman example ammenities
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
-- 5.0: *Added Amenities DTO and refactored Get andd Push code to accept.*
+- 5.2: *Created a DTO for HotelRoom and connected all of the data together.* April 8, 2020
+- 5.3: *Created a DTO for Amenities and room is connected* April 8, 2020
+- 5.0: *Added Amenities DTO and refactored Get andd Push code to accept.* April 8, 2020
 - 4.2: *Connected Amenities to Room and Hotel to Rooms to Amenities. Added the NewtonsoftJSON loop handling.* April 8, 2020
 - 4.1: *Created interfaces and services for dependency injection and applied it to our controller* April 7, 2020
 - 4.0: *Added dependency injection in to our project using interface and services* April 7, 2020
