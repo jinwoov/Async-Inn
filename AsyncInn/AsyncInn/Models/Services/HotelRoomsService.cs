@@ -58,22 +58,6 @@ namespace AsyncInn.Models.Services
         }
 
         /// <summary>
-        /// Get the hotelroom by its hotel id and roomnumber
-        /// </summary>
-        /// <param name="hotelID">id of hotel</param>
-        /// <param name="roomNumber">room number that was given</param>
-        /// <returns>list of hotel rooms</returns>
-        public async Task<RoomDTO> GetByRoomNumber(int hotelID, int roomNumber)
-        {
-            var hotelRooms = await _context.HotelRoom.Where(x => x.RoomNumber == roomNumber && x.HotelID == hotelID)
-                                               .SingleAsync();
-
-             RoomDTO roomba = await _roomContext.GetRoom(hotelRooms.RoomID);
-
-             return roomba;
-        }
-
-        /// <summary>
         /// Delegating hotel rooms to get the specific hotel room
         /// </summary>
         /// <param name="ID">specific hotel room</param>
@@ -85,7 +69,7 @@ namespace AsyncInn.Models.Services
 
             HotelRoomsDTO hRDTO = ConverToDTO(hotelRoom);
 
-            RoomDTO room = await GetByRoomNumber(ID, roomNumber);
+            RoomDTO room = await _roomContext.GetRoom(hRDTO.RoomID);
 
             hRDTO.Room = room;
 

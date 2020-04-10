@@ -75,7 +75,7 @@ namespace AsyncInn.Models.Services
 
             foreach (var room in hotelRooms)
             {
-                HotelRoomsDTO roomba = await _roomContext.GetHotelRoom(room.RoomID, room.RoomNumber);
+                HotelRoomsDTO roomba = await _roomContext.GetHotelRoom(room.HotelID, room.RoomNumber);
                 rooms.Add(roomba);
             }
 
