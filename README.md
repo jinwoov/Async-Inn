@@ -2,9 +2,15 @@
 
 ----
 
-Lab 12, 13, 14, 15, 16, 17 - Databases & ERDs
+***Authors:***   
+[Matthew Johnson](https://github.com/SEAsouthern)  
+[Jin Kim](https://github.com/jinwoov)
 
-*Author: Matthew Johnson, Jin Kim*
+----
+
+### We are deployed on Azure!
+
+[project url here]
 
 ----
 
@@ -13,6 +19,32 @@ Lab 12, 13, 14, 15, 16, 17 - Databases & ERDs
 This lab demonstrate your uses of hotel scenario to practice setting up for ERD. In this scenario there are six relational tables that comprise our database. 
 
 ---
+
+## Getting Started
+
+Clone this repository to your local machine.
+
+```
+$ git clone https://github.com/jinwoov/Async-Inn.git
+```
+Once downloaded, you can either use the dotnet CLI utilities or Visual Studio 2019 to build the web application. The solution file is located in the AsyncInn subdirectory at the root of the repository.
+```
+cd AsyncInn/AsyncInn
+dotnet build
+```
+The dotnet tools will automatically restore any NuGet dependencies. Before running the application, the provided code-first migration will need to be applied to the SQL server of your choice configured in the solution secret file. This requires the Microsoft.EntityFrameworkCore.Tools NuGet package and can be run from the NuGet Package Manager Console:
+```
+Update-Database
+```
+Once the database has been created, the application can be run. Options for running and debugging the application using IIS Express or Kestrel are provided within Visual Studio. From the command line, the following will start an instance of the Kestrel server to host the application:
+```
+cd AsyncInn/AsyncInn
+dotnet run
+```
+
+---
+
+
 ### Visuals
 
 ### Screenshots
@@ -50,6 +82,7 @@ Postman screenshot of middle of building process
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 7.0: *Created front web application* April 11 2020
 - 6.2: *Summary comments are added* April 10 2020
 - 6.1: *Completed application and updated final README documentation* April 10 2020
 - 6.0: *Seed the new information and implementation of hotelDTO is finished* April 9 2020
