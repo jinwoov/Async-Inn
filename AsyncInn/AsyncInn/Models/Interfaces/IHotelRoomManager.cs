@@ -17,9 +17,6 @@ namespace AsyncInn.Models.Interfaces
         //Read all hotelRooms
         Task<List<HotelRoomsDTO>> GetHotelRooms();
 
-        // List of hotel rooms that are found using hotel id and room number
-        Task<RoomDTO> GetByRoomNumber(int hotelID, int roomNumber);
-
         //Update
         Task UpdateHotelRoom(HotelRooms hotelRooms);
 
