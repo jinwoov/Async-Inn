@@ -2,7 +2,7 @@
 
 ----
 
-Lab 12, 13, 14, 15, 16, 17 - Databases & ERDs
+Lab 12, 13, 14, 15, 16, 17, 18 - Databases & ERDs
 
 *Author: Matthew Johnson, Jin Kim*
 
@@ -50,6 +50,7 @@ Postman screenshot of middle of building process
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 7.0: *Created front web application* April 11 2020
 - 6.2: *Summary comments are added* April 10 2020
 - 6.1: *Completed application and updated final README documentation* April 10 2020
 - 6.0: *Seed the new information and implementation of hotelDTO is finished* April 9 2020
