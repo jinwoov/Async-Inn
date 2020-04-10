@@ -12,10 +12,14 @@ namespace AsyncInnWebApp
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// Using dependency
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // using MVC
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,13 +32,13 @@ namespace AsyncInnWebApp
 
             app.UseRouting();
 
+            /// Sets the default routing of our request
+            /// The default is controller = home, action = index id?
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+                endpoints.MapDefaultControllerRoute();
+            }
+            );
         }
     }
 }
