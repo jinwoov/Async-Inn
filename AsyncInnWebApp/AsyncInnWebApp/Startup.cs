@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncInnWebApp.Models.Interfaces;
+using AsyncInnWebApp.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +22,8 @@ namespace AsyncInnWebApp
         {
             // using MVC
             services.AddMvc();
+
+            services.AddTransient<IHotelManager, HotelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,6 +35,8 @@ namespace AsyncInnWebApp
             }
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             /// Sets the default routing of our request
             /// The default is controller = home, action = index id?

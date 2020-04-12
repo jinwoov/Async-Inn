@@ -1,0 +1,22 @@
+﻿@model IEnumerable<AsyncInnWebApp.Models.Hotel>
+<!DOCTYPE html>
+
+<head>
+    <title>All Async Inn Hotels</title>
+</head>
+
+<body>
+    @foreach (var hotel in Model)
+    {
+        <h1>@hotel.Name</h1>
+        <p>@hotel.StreetAddress</p>
+        <p>@hotel.City</p>
+        <p>@hotel.State</p>
+        <p>@hotel.Phone</p>
+        <form method="post">
+            <input type="hidden" value="@hotel.ID" />
+            <button type="submit">Submit</button>
+        </form>
+        <hr />
+    }
+    </body>
