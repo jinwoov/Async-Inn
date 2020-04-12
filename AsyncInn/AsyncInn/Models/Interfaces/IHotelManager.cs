@@ -9,7 +9,7 @@ namespace AsyncInn.Models.Interfaces
     public interface IHotelManager
     {
         //Create
-        Task<Hotel> CreateHotel(Hotel hotel);
+        Task<HotelDTO> CreateHotel(Hotel hotel);
 
         //Read
         Task<HotelDTO> GetHotel(int ID);

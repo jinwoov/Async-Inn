@@ -22,11 +22,12 @@ namespace AsyncInn.Models.Services
         private IHotelRoomManager _roomContext { get; }
 
         //The below method will Create a new hotel.
-        public async Task<Hotel> CreateHotel(Hotel hotel)
+        public async Task<HotelDTO> CreateHotel(Hotel hotel)
         {
             _context.Add(hotel);
             await _context.SaveChangesAsync();
-            return hotel;
+            HotelDTO hdto = ConvertToDTO(hotel);
+            return hdto;
         }
 
         //The below method will Delete a hotel.
