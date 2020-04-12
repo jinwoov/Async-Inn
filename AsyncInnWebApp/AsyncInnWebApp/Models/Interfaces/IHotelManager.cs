@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace AsyncInnWebApp.Models.Interfaces
 {
-    interface IHotelManger
+    public interface IHotelManager
     {
+        Task<List<Hotel>> GetAllHotels();
+
+        Task<Hotel> GetHotelByID(int ID);
     }
 }
