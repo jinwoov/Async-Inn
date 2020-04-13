@@ -1,0 +1,15 @@
+﻿@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    background-image: url("../images/backdrop.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}

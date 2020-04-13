@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AsyncInnWebApp.Models.Hotel>
+@{
+    Layout = "_Layout";
+
+}
+<!DOCTYPE html>
+
+<head>
+    <title>Async Inn</title>
+</head>
+
+<body>
+    <header>
+        <h2>Which location would you like to check out?</h2>
+    </header>
+    <main>
+        @foreach (var hotel in Model)
+        {
+            <h3>@hotel.Name</h3>
+            @if (hotel.Name == "Seattle")
+            {
+                <img src="~/images/seattle.jpg" />
+            }
+            else if (hotel.Name == "Bellevue")
+            {
+                <img src="~/images/bellevue.jpg" />
+            }
+            else if (hotel.Name == "Lynnwood")
+            {
+                <img src="~/images/lynnwood.jpg" />
+            }
+            else if (hotel.Name == "Tukwila")
+            {
+                <img src="~/images/Tukwila.jpg" />
+            } 
+            else if (hotel.Name == "Federal Way")
+            {
+                <img src="~/images/federal.jpg" />
+            }
+
+            <form asp-action="AHotel" asp-controller="Hotel" method="post">
+                <input asp-for="@hotel.ID" name="ID" type="hidden" value="@hotel.ID" />
+                <button type="submit">Submit</button>
+            </form>
+            <hr />
+        }
+    </main>
+</body>

@@ -1,22 +1,21 @@
-﻿@model IEnumerable<AsyncInnWebApp.Models.Hotel>
+﻿@{
+    Layout = "_Layout";
+
+}
 <!DOCTYPE html>
 
 <head>
-    <title>All Async Inn Hotels</title>
+    <title>Async Inn</title>
 </head>
 
 <body>
-    @foreach (var hotel in Model)
-    {
-        <h1>@hotel.Name</h1>
-        <p>@hotel.StreetAddress</p>
-        <p>@hotel.City</p>
-        <p>@hotel.State</p>
-        <p>@hotel.Phone</p>
-        <form method="post">
-            <input type="hidden" value="@hotel.ID" />
-            <button type="submit">Submit</button>
-        </form>
-        <hr />
-    }
-    </body>
+    <header>
+        <h1>Async Inn</h1>
+    </header>
+    <main id="index-body">
+        <h1>Welcome to the Async Inn</h1>
+
+        <h2>Would you like to see the hotels?</h2>
+        <a href="/Hotel">Hotels</a>
+    </main>
+</body>
