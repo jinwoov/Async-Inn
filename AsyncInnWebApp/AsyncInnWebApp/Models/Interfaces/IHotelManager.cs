@@ -7,8 +7,9 @@ namespace AsyncInnWebApp.Models.Interfaces
 {
     public interface IHotelManager
     {
+        //Getting all the hotels
         Task<List<Hotel>> GetAllHotels();
-
+        //Getting single hotel by ID
         Task<Hotel> GetHotelByID(int ID);
     }
 }
