@@ -10,7 +10,11 @@
 
 ### We are deployed on Azure!
 
-[project url here]
+Front end website:   
+https://asyncinnmvc.azurewebsites.net/
+
+API server:   
+https://asyncinnapi.azurewebsites.net/api/
 
 ----
 
@@ -48,11 +52,21 @@ dotnet run
 ### Visuals
 
 ### Screenshots
+
+![Application start](./assets/front-page.jpg)
+Front page
+
+![Application start](./assets/hotels-page.jpg)
+Hotel Lists
+
+![Application start](./assets/end-page.jpg)
+Final Page
+
+
+
 ![Postman](./assets/final-result.png)
 Final result of our postman search
 
-![Postman](./assets/Postman.png)
-Postman screenshot of middle of building process
 
 #### ERD Diagram
 ![Application based on this model](./assets/AsyncInn2.png)
