@@ -1,0 +1,25 @@
+﻿@model AsyncInnWebApp.Models.Hotel
+@{
+    Layout = "_Layout";
+
+}
+<!DOCTYPE html>
+
+<head>
+    <title>Async Inn</title>
+</head>
+
+<body>
+    <header>
+        <h1>Async Inn</h1>
+    </header>
+    <main>
+        <section id="pickedHotel">
+            <h1>@Model.Name</h1>
+            <p>@Model.StreetAddress</p>
+            <p>@Model.City</p>
+            <p>@Model.State</p>
+            <p>@Model.Phone</p>
+        </section>
+    </main>
+</body>

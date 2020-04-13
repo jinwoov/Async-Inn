@@ -20,7 +20,7 @@ namespace AsyncInnWebApp.Models.Services
         public async Task<List<Hotel>> GetAllHotels()
         {
             //The below sets the destination address
-            var baseUrl = @"https://localhost:44398/api";
+            var baseUrl = @"https://asyncinnapi.azurewebsites.net/api";
             string route = "hotels";
 
             client.DefaultRequestHeaders.Accept.Clear();
@@ -38,7 +38,7 @@ namespace AsyncInnWebApp.Models.Services
         public async Task<Hotel> GetHotelByID(int ID)
         {
             //The below sets the destination address
-            var baseUrl = @"https://localhost:44398/api";
+            var baseUrl = @"https://asyncinnapi.azurewebsites.net/api";
             string route = "hotels";
 
             client.DefaultRequestHeaders.Accept.Clear();

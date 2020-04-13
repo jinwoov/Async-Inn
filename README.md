@@ -10,7 +10,11 @@
 
 ### We are deployed on Azure!
 
-[project url here]
+Front end website:   
+https://asyncinnmvc.azurewebsites.net/
+
+API server:   
+https://asyncinnapi.azurewebsites.net/api/
 
 ----
 
@@ -48,11 +52,21 @@ dotnet run
 ### Visuals
 
 ### Screenshots
+
+![Application start](./assets/front-page.jpg)
+Front page
+
+![Application start](./assets/hotels-page.jpg)
+Hotel Lists
+
+![Application start](./assets/end-page.jpg)
+Final Page
+
+
+
 ![Postman](./assets/final-result.png)
 Final result of our postman search
 
-![Postman](./assets/Postman.png)
-Postman screenshot of middle of building process
 
 #### ERD Diagram
 ![Application based on this model](./assets/AsyncInn2.png)
@@ -82,6 +96,8 @@ Postman screenshot of middle of building process
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 7.2: *Screenshots are uploaded and documentation is completed* April 12 2020
+- 7.1: *Finished linking front and API server* April 12 2020
 - 7.0: *Created front web application* April 11 2020
 - 6.2: *Summary comments are added* April 10 2020
 - 6.1: *Completed application and updated final README documentation* April 10 2020

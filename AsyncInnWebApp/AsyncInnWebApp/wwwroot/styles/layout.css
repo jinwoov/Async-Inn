@@ -1,0 +1,11 @@
+﻿@import url("base.css");
+
+header {
+    font-size: 100px;
+    color: beige;
+    text-align: center;
+}
+
+header h2 {
+    font-size: 80px;
+}

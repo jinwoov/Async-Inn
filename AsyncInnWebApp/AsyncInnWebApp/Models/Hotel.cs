@@ -22,8 +22,8 @@ namespace AsyncInnWebApp.Models
 
         public string State { get; set; }
         [JsonPropertyName("phone")]
-
         public string Phone { get; set; }
+
 
     }
 }
