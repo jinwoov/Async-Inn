@@ -119,4 +119,8 @@ Final result of our postman search
 - 1.3: *Scaffolding database, install all needed dependencies* - April 2 2020
 - 1.2: *Lab 12 complete, updated our ERD diagram* - April 2 2020
 - 1.1: *Added description of ERD diagram* - April 1 2020
-- 1.0: *Created repo and added image to the README documentation* - April 1 2020  
+- 1.0: *Created repo and added image to the README documentation* - April 1 2020 
+
+
+### Source  
+Background Image: Photo by Marten Bjork on Unsplash
