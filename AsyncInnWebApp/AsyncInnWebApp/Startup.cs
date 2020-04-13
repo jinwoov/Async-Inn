@@ -39,7 +39,6 @@ namespace AsyncInnWebApp
             app.UseStaticFiles();
 
             /// Sets the default routing of our request
-            /// The default is controller = home, action = index id?
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

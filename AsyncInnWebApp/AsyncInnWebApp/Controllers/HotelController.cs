@@ -20,6 +20,8 @@ namespace AsyncInnWebApp.Controllers
         {
             _hotel = hotel;
         }
+
+        // Getting all the hotels
         // GET: /<controller>/
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -30,6 +32,7 @@ namespace AsyncInnWebApp.Controllers
         }
 
 
+        // choosing the specific hotel that user clicked and render the information
         [HttpPost]
         public async Task<IActionResult> AHotel(Parameter num)
         {

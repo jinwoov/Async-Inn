@@ -8,6 +8,7 @@ namespace AsyncInnWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        // rendering home index page
         public IActionResult Index()
         {
             return View();

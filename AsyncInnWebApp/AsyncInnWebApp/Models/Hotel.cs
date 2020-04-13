@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInnWebApp.Models
 {
+    //Class that will be used as a reference for hotel data that is received from API server
     public class Hotel
     {
         [JsonPropertyName("id")]
