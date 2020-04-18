@@ -25,6 +25,9 @@ namespace AsyncInnWebApp.Models
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
 
+        [JsonPropertyName("rooms")]
+        public List<HotelRooms> Rooms { get; set; }
+
 
     }
 }

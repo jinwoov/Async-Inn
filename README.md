@@ -10,11 +10,11 @@
 
 ### We are deployed on Azure!
 
-Front end website:   
-https://asyncinnmvc.azurewebsites.net/
+[Front end website](https://asyncinnmvc.azurewebsites.net/)
 
-API server:   
-https://asyncinnapi.azurewebsites.net/api/
+[API server](https://asyncinnapi.azurewebsites.net/api/)
+
+[Swagger](https://asyncinnapi.azurewebsites.net/swagger/index.html)
 
 ----
 
@@ -96,6 +96,7 @@ Final result of our postman search
 - Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. It navigates to the room table has a one to many relationship.
 
 ### Change Log
+- 8.0: *Each hotel shows room that they have and amenities* April 17 2020
 - 7.2: *Screenshots are uploaded and documentation is completed* April 12 2020
 - 7.1: *Finished linking front and API server* April 12 2020
 - 7.0: *Created front web application* April 11 2020

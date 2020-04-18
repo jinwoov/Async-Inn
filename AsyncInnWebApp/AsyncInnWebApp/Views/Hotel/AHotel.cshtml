@@ -17,11 +17,36 @@
     </header>
     <main>
         <section id="pickedHotel">
-            <h1>@Model.Name</h1>
-            <p>@Model.StreetAddress</p>
-            <p>@Model.City</p>
-            <p>@Model.State</p>
-            <p>@Model.Phone</p>
+            <h1 id="hotelName">Hotel Name: @Model.Name</h1>
+            <p>Address: @Model.StreetAddress</p>
+            <p>City: @Model.City</p>
+            <p>State: @Model.State</p>
+            <p>Phone number: @Model.Phone</p>
+            <br />
+
+            @if (@Model.Rooms.Count != 0)
+            {
+                <h5>These are rooms that is available in this hotel</h5>
+                @foreach (var hotelRooms in @Model.Rooms)
+                {
+                    <p>Room Name: @hotelRooms.Room.Name</p>
+                    <p>Rates: $@hotelRooms.Rate</p>
+                    <p>Room Number: #@hotelRooms.RoomNumber</p>
+                    <p>Layout of the room: @hotelRooms.Room.Layout</p>
+                    <br />
+                    <p>Amenities includes: </p>
+                    <br />
+                    @foreach (var amenities in @hotelRooms.Room.Amenities)
+                    {
+                        <p>@amenities.Name</p>
+                    }
+                    <br />
+                }
+            }
+            else
+            {
+                <p>There are no rooms available</p>
+            }
         </section>
     </main>
 </body>
