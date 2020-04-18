@@ -26,8 +26,14 @@ namespace AsyncInn.Controllers
         // POST: api/RoomAmenities
         // Creates new RoomAmenities when user input information
         [HttpPost, Route("{roomId}/{amenitiesId}")]
-        public async Task<ActionResult<RoomAmenities>> PostRoomAmenities(RoomAmenities roomAmenities)
+        public async Task<ActionResult<RoomAmenities>> PostRoomAmenities(int roomId, int amenitiesId)
         {
+            RoomAmenities roomAmenities = new RoomAmenities()
+            {
+                RoomID = roomId,
+                AmenitiesID = amenitiesId
+            };
+
             _context.RoomAmenities.Add(roomAmenities);
                 await _context.SaveChangesAsync();
 

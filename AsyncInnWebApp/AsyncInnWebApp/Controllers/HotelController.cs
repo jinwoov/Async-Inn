@@ -34,9 +34,9 @@ namespace AsyncInnWebApp.Controllers
 
         // choosing the specific hotel that user clicked and render the information
         [HttpPost]
-        public async Task<IActionResult> AHotel(Parameter num)
+        public async Task<IActionResult> AHotel(int id)
         {
-            Hotel hotel = await _hotel.GetHotelByID(num.ID);
+            Hotel hotel = await _hotel.GetHotelByID(id);
             return View(hotel);
         }
 
